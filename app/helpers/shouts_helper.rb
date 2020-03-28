@@ -1,9 +1,4 @@
 module ShoutsHelper
-  def avatar(user)
-    email_digest = Digest::MD5.hexdigest(user.email)
-    gravatar_url = "//gravatar.com/avatar/#{email_digest}"
-    image_tag gravatar_url
-  end
 
   def like_button(shout)
     if current_user.liked?(shout)
