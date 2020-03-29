@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+  get 'hashtags/show'
   constraints Clearance::Constraints::SignedIn.new do
     root to: "dashboards#show"
   end
   root to: 'homes#show'
 
-  post '/text_shouts' => "shouts#create", defaults: { content_type: TextShout }
-  post '/photo_shouts' => "shouts#create", defaults: { content_type: PhotoShout }
+  post 'text_shouts' => "shouts#create", defaults: { content_type: TextShout }
+  post 'photo_shouts' => "shouts#create", defaults: { content_type: PhotoShout }
   
   resources :shouts, only: [:show] do
     member do
@@ -13,6 +14,9 @@ Rails.application.routes.draw do
       delete "unlike" => "likes#destroy"
     end
   end
+
+  resources :hashtags, only: [:show]
+
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, only: [:create]
 
@@ -27,7 +31,7 @@ Rails.application.routes.draw do
       only: [:edit, :update]
   end
 
-  get "/sign_in" => "sessions#new", as: "sign_in"
-  delete "/sign_out" => "sessions#destroy", as: "sign_out"
-  get "/sign_up" => "users#new", as: "sign_up"
+  get "sign_in" => "sessions#new", as: "sign_in"
+  delete "sign_out" => "sessions#destroy", as: "sign_out"
+  get "sign_up" => "users#new", as: "sign_up"
 end
