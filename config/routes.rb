@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  ActiveAdmin.routes(self)
+  
   constraints Clearance::Constraints::SignedIn.new do
     root to: "dashboards#show"
   end
