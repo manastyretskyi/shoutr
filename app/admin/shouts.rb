@@ -14,5 +14,12 @@ ActiveAdmin.register Shout do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+
+  show do
+    attributes_table do
+      render shout
+    end
+    active_admin_comments
+  end
+
 end

@@ -1,4 +1,5 @@
 ActiveAdmin.register TextShout do
+  menu parent: "Shouts"
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -14,5 +15,12 @@ ActiveAdmin.register TextShout do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  show do
+    attributes_table do
+      render Shout.where(content_type: "TextShout", content_id: text_shout.id)
+    end
+    active_admin_comments
+  end
   
 end
