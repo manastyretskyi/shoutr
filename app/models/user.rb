@@ -3,6 +3,8 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 
+  enum role: [ :user, :moderator, :admin ]
+
   has_many :shouts, dependent: :destroy
   has_many :likes
   has_many :liked_shouts, through: :likes, source: :shout

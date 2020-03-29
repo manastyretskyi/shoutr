@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  
-  ActiveAdmin.routes(self)
+  constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
+    ActiveAdmin.routes(self)
+  end
   
   constraints Clearance::Constraints::SignedIn.new do
     root to: "dashboards#show"
