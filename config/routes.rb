@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  get 'hashtags/show'
+  
   constraints Clearance::Constraints::SignedIn.new do
     root to: "dashboards#show"
   end
+  
   root to: 'homes#show'
 
   post 'text_shouts' => "shouts#create", defaults: { content_type: TextShout }
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :search, only: [:show]
   resources :hashtags, only: [:show]
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
