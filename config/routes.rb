@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  authenticate :user, lambda { |user| user.admin? } do
+    ActiveAdmin.routes(self)
+  end
   
-  constraints Clearance::Constraints::SignedIn.new do
+  authenticate :user do
     root to: "dashboards#show"
   end
   
@@ -19,21 +24,12 @@ Rails.application.routes.draw do
   resource :search, only: [:show]
   resources :hashtags, only: [:show]
 
-  resources :passwords, controller: "clearance/passwords", only: [:create, :new]
-  resource :session, only: [:create]
-
-  resources :users, only: [:create, :show] do
+  resources :users do
     resources :followers, only: [:index]
     member do
       post "follow" => "followed_users#create"
       delete "unfollow" => "followed_users#destroy"
     end
-    resource :password,
-      controller: "clearance/passwords",
-      only: [:edit, :update]
   end
 
-  get "sign_in" => "sessions#new", as: "sign_in"
-  delete "sign_out" => "sessions#destroy", as: "sign_out"
-  get "sign_up" => "users#new", as: "sign_up"
 end
