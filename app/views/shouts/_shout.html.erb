@@ -5,5 +5,9 @@
   <%= link_to shout do %>
   <%= time_ago_in_words shout.created_at %> ago.
   <% end %>
+  </br>
+  <%= link_to shout_likes_path(shout) do %>
+  <%= "#{shout.likes_count} " + "Like".pluralize(shout.likes_count) %>
+  <% end %>
   <%= like_button shout %>
 </div>

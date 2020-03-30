@@ -15,6 +15,17 @@ ActiveAdmin.register Shout do
   #   permitted
   # end
 
+  index do
+    column :id
+    column :user
+    column :content_type
+    column :content
+    column :created_at
+    column :updated_at
+    column :likes_count
+    actions
+  end
+
   show do
     attributes_table do
       render shout

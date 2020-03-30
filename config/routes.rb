@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post 'photo_shouts' => "shouts#create", defaults: { content_type: PhotoShout }
   
   resources :shouts, only: [:show] do
+  resources :likes, only: [:index]
     member do
       post "like" => "likes#create"
       delete "unlike" => "likes#destroy"
