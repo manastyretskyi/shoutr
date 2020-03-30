@@ -14,6 +14,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'activeadmin'
 gem 'devise'
 gem 'paperclip'
+gem 'elasticsearch-model', git: 'git://github.com/elastic/elasticsearch-rails.git', branch: 'master'
+gem 'elasticsearch-rails', git: 'git://github.com/elastic/elasticsearch-rails.git', branch: 'master'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end

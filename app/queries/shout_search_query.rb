@@ -18,11 +18,11 @@ class ShoutSearchQuery
   def matching_shouts_for_text_shouts
     Shout.where(
       content_type: 'TextShout', 
-      content_id: matching_text_shouts.select(:id))
+      content_id: matching_text_shouts.map { |match| match.id })
   end
       
   def matching_text_shouts
-    TextShout.where("body LIKE ?", "%#{term}%")
+    TextShout.search(term)
   end
   
   def matching_shouts_for_photo_shouts
