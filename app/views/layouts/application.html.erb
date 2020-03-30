@@ -14,11 +14,13 @@
   <%= link_to "home", root_path %>
   <% if signed_in? %>
   Signed in as: <%= current_user.email %>
-  <%= button_to 'Sign out', sign_out_path, method: :delete %>
+  <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
   <% else %>
-  <%= link_to 'Sign in', sign_in_path %>
+  <%= link_to 'Log in', new_user_session_path %>
   <% end %>
-
+  <% if current_user.admin? %>
+  <%= link_to "Admin panel", admin_dashboard_path %>
+  <% end %>
 
   <div id="flash">
     <% flash.each do |key, value| %>

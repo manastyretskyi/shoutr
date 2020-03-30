@@ -1,6 +1,12 @@
 class User < ApplicationRecord
-  include Clearance::User
+
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, 
+         :timeoutable, :trackable
   validates :username, presence: true, uniqueness: true
+
+  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+
   validates :email, presence: true, uniqueness: true
 
   enum role: [ :user, :moderator, :admin ]
@@ -11,7 +17,8 @@ class User < ApplicationRecord
 
   has_many :followed_user_relationships,
     foreign_key: :follower_id,
-    class_name: "FollowingRelationship"
+    class_name: "FollowingRelationship",
+    dependent: :destroy
   has_many :followed_users, through: :followed_user_relationships
 
   has_many :follower_relationships, 
@@ -19,6 +26,12 @@ class User < ApplicationRecord
     class_name: "FollowingRelationship",
     dependent: :destroy
   has_many :followers, through: :follower_relationships
+
+  attr_writer :login
+
+  def login
+    @login || self.username || self.email
+  end
 
   def follow(user)
     followed_users << user
@@ -46,5 +59,13 @@ class User < ApplicationRecord
 
   def to_param
     username
+  end
+
+  def self.find_for_database_authentication(warden_condition)
+    conditions = warden_condition.dup
+    login = conditions.delete(:login)
+    where(conditions).where(
+      ["lower(username) = :value OR lower(email) = :value",
+      { value: login.strip.downcase}]).first
   end
 end

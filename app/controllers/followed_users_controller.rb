@@ -1,5 +1,5 @@
 class FollowedUsersController < ApplicationController
-  before_action :require_login
+  before_action :authenticate_user!
 
   def create
     user_to_follow = find_user
