@@ -1,5 +1,10 @@
 class FollowedUsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
+  
+  def index
+    @user = User.find_by!(username: params[:user_id])
+    @followed_users = @user.followed_users
+  end
 
   def create
     user_to_follow = find_user
@@ -15,6 +20,6 @@ class FollowedUsersController < ApplicationController
 
   private
   def find_user
-    @_user ||= User.find_by(username: params[:id])
+    @_user ||= User.find_by!(username: params[:id])
   end
 end

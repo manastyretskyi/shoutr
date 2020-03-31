@@ -7,6 +7,6 @@ class FollowersController < ApplicationController
 
   private
   def find_user
-    @_user ||= User.find_by(username: params[:user_id])
+    @_user ||= User.find_by!(username: params[:user_id])
   end
 end
