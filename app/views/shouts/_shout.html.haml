@@ -1,0 +1,10 @@
+%div
+  = avatar shout.user
+  = link_to shout.username, shout.user
+  = render shout.content
+  = link_to shout do
+    = time_ago_in_words shout.created_at
+    ago.
+  = link_to shout_likes_path(shout) do
+    = "#{shout.likes_count} " + "Like".pluralize(shout.likes_count)
+  = like_button shout

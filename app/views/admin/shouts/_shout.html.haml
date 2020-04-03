@@ -1,0 +1,7 @@
+%div
+  = link_to shout.username, admin_user_path(shout.user)
+  = render shout.content
+  = link_to admin_shout_path(shout) do
+    = time_ago_in_words shout.created_at
+    ago.
+  = "#{shout.likes_count} " + "Like".pluralize(shout.likes_count)

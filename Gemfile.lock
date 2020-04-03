@@ -98,6 +98,7 @@ GEM
       faraday (>= 0.14, < 1)
       multi_json
     erubi (1.9.0)
+    erubis (2.7.0)
     execjs (2.7.0)
     faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
@@ -107,10 +108,24 @@ GEM
     formtastic_i18n (0.6.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    haml (5.1.2)
+      temple (>= 0.8.0)
+      tilt
+    haml-rails (2.0.1)
+      actionpack (>= 5.1)
+      activesupport (>= 5.1)
+      haml (>= 4.0.6, < 6.0)
+      html2haml (>= 1.0.1)
+      railties (>= 5.1)
     has_scope (0.7.2)
       actionpack (>= 4.1)
       activesupport (>= 4.1)
     hashie (4.1.0)
+    html2haml (2.2.0)
+      erubis (~> 2.7.0)
+      haml (>= 4.0, < 6)
+      nokogiri (>= 1.6.0)
+      ruby_parser (~> 3.5)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     inherited_resources (1.11.0)
@@ -212,6 +227,8 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     ruby_dep (1.5.0)
+    ruby_parser (3.14.2)
+      sexp_processor (~> 4.9)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -231,6 +248,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    sexp_processor (4.14.1)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -242,6 +260,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    temple (0.8.2)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.0.1)
@@ -276,6 +295,7 @@ DEPENDENCIES
   devise
   elasticsearch-model!
   elasticsearch-rails!
+  haml-rails (~> 2.0)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   paperclip

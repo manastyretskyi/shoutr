@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Shoutr
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    = link_to "home", root_path
+    - if signed_in?
+      Signed in as: #{current_user.email}
+      \#{button_to 'Sign out', destroy_user_session_path, method: :delete}
+    - else
+      = link_to 'Log in', new_user_session_path
+    - if current_user.admin?
+      = link_to "Admin panel", admin_dashboard_path
+    #flash
+      - flash.each do |key, value|
+        %div{:class => "flash #{key}"}= value
+    = render 'search'
+    = yield
