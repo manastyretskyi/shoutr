@@ -2,7 +2,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, 
-         :timeoutable, :trackable
+         :timeoutable, :trackable, :confirmable
   validates :username, presence: true, uniqueness: true
 
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
@@ -12,7 +12,7 @@ class User < ApplicationRecord
   enum role: [ :user, :moderator, :admin ]
 
   has_many :shouts, dependent: :destroy
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :liked_shouts, through: :likes, source: :shout
 
   has_many :followed_user_relationships,

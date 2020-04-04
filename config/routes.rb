@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { confirmations: 'confirmations' }
 
   authenticate :user, lambda { |user| user.admin? } do
     ActiveAdmin.routes(self)
