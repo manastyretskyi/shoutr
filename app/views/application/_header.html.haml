@@ -1,0 +1,21 @@
+%header.sticky-top
+  %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+    = link_to "Shoutr", root_path, class: "navbar-brand"
+    %ul.navbar-nav.mr-auto
+      - if current_user.admin?
+        %li.nav-item
+          = link_to "Admin panel", admin_dashboard_path, class: "nav-link"
+    = render "search"
+    
+    %ul.navbar-nav
+      - if signed_in?
+        %li.nav-item.dropdown
+          %a.nav-link.dropdown-toggle#navbarDropdown{ href: "#", role: "button", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false" } 
+            = current_user.username
+          .dropdown-menu{ "aria-labelledby": "navbarDropdown" }
+            = link_to "Profile", current_user, class: "dropdown-item"
+            .dropdown-divider
+            = link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item"
+      - else
+        %li.nav-item
+          = link_to "Log in", new_user_session_path, class: "nav-link"

@@ -1,0 +1,4 @@
+-if !flash.empty?
+  .mt-2
+    - flash.each do |key, value|
+      %div{:class => "alert alert-#{key == "alert" ? "danger" : "success"}"}= value

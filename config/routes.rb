@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     ActiveAdmin.routes(self)
   end
   
-  authenticate :user do
+  authenticated do
     root to: "dashboards#show"
   end
   
