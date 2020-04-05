@@ -95,6 +95,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.7.5)
+    dotenv-rails (2.7.5)
+      dotenv (= 2.7.5)
+      railties (>= 3.2, < 6.1)
     elasticsearch (7.5.0)
       elasticsearch-api (= 7.5.0)
       elasticsearch-transport (= 7.5.0)
@@ -301,6 +305,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   devise
+  dotenv-rails
   elasticsearch-model!
   elasticsearch-rails!
   haml-rails (~> 2.0)
