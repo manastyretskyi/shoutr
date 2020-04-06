@@ -1,6 +1,6 @@
 class SearchesController < ApplicationController
   def show
-    @search = Search.new(term: search_term)
+    @search = Search.new(term: search_term, page: params[:page])
   end
 
   private

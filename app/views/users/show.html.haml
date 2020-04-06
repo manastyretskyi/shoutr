@@ -1,9 +1,20 @@
-= avatar @user
-%h1= @user.username
-= link_to user_followed_users_path(@user) do
-  = "#{@user.followed_users_count} following"
-= link_to user_followers_path(@user) do
-  = @user.followers_count
-  = "follower".pluralize @user.followers_count
-= follow_button @user
-= render @timeline
+.container.mb-5
+  .row.mt-5
+    .col-md-4
+      .d-flex.flex-wrap
+        .pr-2
+          = avatar @user, size: 50
+        %h1= @user.username
+      %hr
+      .d-flex.justify-content-around.mb-3
+        .text-muted
+          = pluralize(current_user.shouts.count, "shouts")
+        = link_to user_followed_users_path(@user), class: "text-muted" do
+          = "#{num_to_follows @user.followed_users_count} following"
+        = link_to user_followers_path(@user), class: "text-muted" do
+          = num_to_follows @user.followers_count
+          = "follower".pluralize @user.followers_count
+      - if @user != current_user
+        = follow_button @user
+    .col-md-8
+      = render partial: 'timelines/timeline', object: @timeline, locals: {user: @user}

@@ -1,5 +1,12 @@
-= shout_form_for(TextShout) do |form|
-  = form.text_field :body, placeholder: "Shout here", required: true
-= shout_form_for(PhotoShout) do |form|
-  = form.file_field :image, required: true
-= render @dashboard.timeline
+.container.mb-5
+  .row.mt-5
+    .col-md-4
+      = render "user_info"
+      %hr
+      = shout_form_for(TextShout) do |form|
+        = form.text_area :body, placeholder: "Shout here", required: true, class: "form-control form-control-lg"
+      %hr
+      = shout_form_for(PhotoShout) do |form|
+        = form.file_field :image, required: true, class: "form-control-file"
+    .col-md-8
+      = render partial: 'timelines/timeline', object: @dashboard.timeline, locals: {user: current_user}

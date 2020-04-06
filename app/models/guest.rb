@@ -1,4 +1,8 @@
 class Guest
+  def id
+    -1
+  end
+  
   def email
     false
   end

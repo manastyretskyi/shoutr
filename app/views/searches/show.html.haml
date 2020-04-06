@@ -1,1 +1,4 @@
-= render @search.results
+.col-md-6.mx-auto.my-3
+  %h1= "Results for \"#{@search.term}\""
+  = render @search.results
+  = will_paginate @search.results

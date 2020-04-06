@@ -20,6 +20,8 @@ gem 'devise'
 gem 'paperclip'
 gem 'elasticsearch-model', git: 'git://github.com/elastic/elasticsearch-rails.git', branch: 'master'
 gem 'elasticsearch-rails', git: 'git://github.com/elastic/elasticsearch-rails.git', branch: 'master'
+gem 'will_paginate', '3.1.8'
+gem 'will_paginate-bootstrap4'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end

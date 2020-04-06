@@ -1,2 +1,4 @@
-%h1= @search.term
-= render @search.results
+.col-md-6.mx-auto.my-3
+  %h1= @search.term
+  = render @search.results
+  = will_paginate @search.results

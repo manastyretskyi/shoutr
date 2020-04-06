@@ -3,6 +3,7 @@ class LikesController < ApplicationController
 
   def index
     @shout = find_shout
+    @users_liked = shout.users_liked.paginate(page: params[:page])
   end
 
   def create

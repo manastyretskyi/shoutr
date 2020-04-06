@@ -30,4 +30,28 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  follows:
+    unit:
+      one: ""
+      other: ""
+    ten:
+      one: ""
+      other: ""
+    hundred:
+      one: ""
+      other: ""
+    thousand:
+      one: "k"
+      other: "k"
+    million:
+      one: "m"
+      other: "m"
+    billion:
+      one: "b"
+      other: "b"
+    trillion:
+      one: "trillion"
+      other: "trillions"
+    quadrillion:
+      one: "quadrillion"
+      other: "quadrillions"

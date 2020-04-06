@@ -1,4 +1,5 @@
 -if !flash.empty?
   .mt-2
     - flash.each do |key, value|
+      - next unless value.is_a? String
       %div{:class => "alert alert-#{key == "alert" ? "danger" : "success"}"}= value

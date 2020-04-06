@@ -3,7 +3,7 @@ class FollowedUsersController < ApplicationController
   
   def index
     @user = User.find_by!(username: params[:user_id])
-    @followed_users = @user.followed_users
+    @followed_users = @user.followed_users.paginate(page: params[:id])
   end
 
   def create

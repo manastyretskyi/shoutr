@@ -1,10 +1,16 @@
-%div
-  = avatar shout.user
-  = link_to shout.username, shout.user
-  = render shout.content
-  = link_to shout do
-    = time_ago_in_words shout.created_at
-    ago.
-  = link_to shout_likes_path(shout) do
-    = "#{shout.likes_count} " + "Like".pluralize(shout.likes_count)
-  = like_button shout
+%hr
+.row
+  .col-md-1.pl-1
+    = avatar shout.user, size: 50, rounded: true
+  .col-md-11.pr-1
+    .row
+      = link_to "@#{shout.username}", shout.user, class: "mr-1 text-dark"
+      = link_to shout, class: "text-muted" do
+        = time_ago_in_words shout.created_at
+        ago.
+    .row.my-3
+      = render shout.content
+    .row.d-flex.align-items-center
+      = link_to shout_likes_path(shout), class: "ml-auto pr-2 text-black-50" do
+        = "#{shout.likes_count} " + "Like".pluralize(shout.likes_count)
+      = like_button shout
