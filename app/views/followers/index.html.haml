@@ -1,7 +1,5 @@
 .container.my-3
   .col-md-6.mx-auto
-    %h1
-      = @user.username
-      's followers
+    %h1= "#{@user.username}'s followers"
     = render @followers
     = will_paginate @followers

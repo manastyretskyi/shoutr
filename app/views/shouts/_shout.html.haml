@@ -1,8 +1,7 @@
 %hr
 .row
   .col-md-1.pl-1
-    = link_to shout.user do
-      = avatar shout.user, size: 50, rounded: true
+    = link_to avatar(shout.user, size: 50, rounded: true), shout.user
   .col-md-11.pr-1
     .row
       = link_to "@#{shout.username}", shout.user, class: "mr-1 text-dark"

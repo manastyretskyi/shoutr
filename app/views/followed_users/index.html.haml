@@ -1,7 +1,6 @@
 .container.my-3
   .col-md-6.mx-auto
     %h1
-      = @user.username
-      's following
+      = "#{@user.username}'s following"
     = render @followed_users
     = will_paginate @followed_users

@@ -1,5 +1,3 @@
-%h2
-  = user.username
-  's feed
+%h2= "#{user.username}'s feed"
 = render timeline.shouts
 = will_paginate timeline.shouts

@@ -2,8 +2,7 @@
 .row-md-4.d-flex.align-items-center.justify-content-between
   .col-7.d-flex.flex-wrap.align-items-center.p-0
     .pr-2
-      = link_to user do
-        = avatar user, size: 50, rounded: true
+      = link_to avatar(user, size: 50, rounded: true), user
     = link_to user, class: "text-muted" do
       %h4= user.username.truncate(15)
   .col-5.d-flex.justify-content-around.p-0
