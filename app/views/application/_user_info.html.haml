@@ -3,5 +3,5 @@
   %h1
     = current_user.username
 .d-flex.justify-content-between.my-3
-  = pluralize(current_user.shouts.count, "shouts")
+  = pluralize(current_user.shouts_count, "shout")
   = link_to "view my profile", current_user

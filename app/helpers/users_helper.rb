@@ -8,6 +8,6 @@ module UsersHelper
   end
 
   def num_to_follows(num)
-    number_to_human num, units: :follows, separator: num > 999 ? "." : "", locale: :en
+    num == 0 ? "0" : number_to_human(num, units: :follows, separator: num > 999 ? "." : "", locale: :en)
   end
 end

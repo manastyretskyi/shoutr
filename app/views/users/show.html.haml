@@ -8,7 +8,7 @@
       %hr
       .d-flex.justify-content-around.mb-3
         .text-muted
-          = pluralize(@user.shouts.count, "shouts")
+          = pluralize(@user.shouts_count, "shout")
         = link_to user_followed_users_path(@user), class: "text-muted" do
           = "#{num_to_follows @user.followed_users_count} following"
         = link_to user_followers_path(@user), class: "text-muted" do
