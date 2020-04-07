@@ -22,7 +22,11 @@ class ShoutSearchQuery
   end
       
   def matching_text_shouts
-    TextShout.search(term)
+    if term.include?("#")
+      TextShout.search query: { match: { hashtags: term } }
+    else
+      TextShout.search(term)
+    end
   end
   
   def matching_shouts_for_photo_shouts
