@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   resource :search, only: [:show]
   resources :hashtags, only: [:show]
 
-  resources :users do
+  resources :users, only: [:show] do
     resources :followers, only: [:index]
     resources :followed_users, only: [:index]
     member do
