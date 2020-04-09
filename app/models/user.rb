@@ -1,40 +1,39 @@
 class User < ApplicationRecord
-
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, 
+         :recoverable, :rememberable, :validatable,
          :timeoutable, :trackable, :confirmable
   validates :username, presence: true, uniqueness: true
 
-  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
 
   validates :email, presence: true, uniqueness: true
 
-  enum role: [ :user, :moderator, :admin ]
+  enum role: %i[user moderator admin]
 
   has_many :shouts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_shouts, through: :likes, source: :shout
 
   has_many :followed_user_relationships,
-    foreign_key: :follower_id,
-    class_name: "FollowingRelationship",
-    dependent: :destroy
+           foreign_key: :follower_id,
+           class_name: 'FollowingRelationship',
+           dependent: :destroy
   has_many :followed_users, through: :followed_user_relationships
 
-  has_many :follower_relationships, 
-    foreign_key: :followed_user_id,
-    class_name: "FollowingRelationship",
-    dependent: :destroy
+  has_many :follower_relationships,
+           foreign_key: :followed_user_id,
+           class_name: 'FollowingRelationship',
+           dependent: :destroy
   has_many :followers, through: :follower_relationships
 
   attr_writer :login
 
   def login
-    @login || self.username || self.email
+    @login || username || email
   end
 
   def follow(user)
-    followed_users << user
+    followed_users << user unless self == user
   end
 
   def unfollow(user)
@@ -65,7 +64,8 @@ class User < ApplicationRecord
     conditions = warden_condition.dup
     login = conditions.delete(:login)
     where(conditions).where(
-      ["lower(username) = :value OR lower(email) = :value",
-      { value: login.strip.downcase}]).first
+      ['lower(username) = :value OR lower(email) = :value',
+       { value: login.strip.downcase }]
+    ).first
   end
 end
